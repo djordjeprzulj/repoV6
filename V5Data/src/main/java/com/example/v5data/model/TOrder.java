@@ -1,9 +1,13 @@
 package com.example.v5data.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javassist.bytecode.Descriptor.Iterator;
 
 import java.util.Date;
 import java.util.List;
@@ -27,6 +31,9 @@ public class TOrder implements Serializable {
 	@Column(name="order_date")
 	private Date orderDate;
 
+	@Transient
+	private BigDecimal total;
+	
 	//bi-directional many-to-one association to TCustomer
 	@ManyToOne
 	@JoinColumn(name="customer_id")
@@ -86,4 +93,10 @@ public class TOrder implements Serializable {
 		return TOrderItem;
 	}
 
+	public BigDecimal getTotal() {
+		double dblTotal = 0; 
+		for (TOrderItem item : this.getTOrderItems())
+			dblTotal = dblTotal + item.getItemTotal().doubleValue();
+		return new BigDecimal(dblTotal).setScale(2, BigDecimal.ROUND_HALF_EVEN); 
+	}
 }
