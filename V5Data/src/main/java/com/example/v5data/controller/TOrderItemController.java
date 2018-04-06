@@ -5,16 +5,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.v5data.model.TOrderItem;
-import com.example.v5data.repository.TOrderItemRepository;
+import com.example.v5data.service.TOrderItemService;
 
 @RestController
 public class TOrderItemController {
 
 	@Autowired
-	private TOrderItemRepository tOrderItemRepository;
+	private TOrderItemService tOrderItemService;
 	
 	@RequestMapping("/orderItem")
 	public Iterable<TOrderItem> getAllOrderItems() {
-		return tOrderItemRepository.findAll();
+		return tOrderItemService.findAll();
+	}
+	
+	@RequestMapping("/nextSeqNumForOrder2")
+	public int nextSeqNumForOrder2() {
+		return tOrderItemService.getNextSeqNumberForOrder(2);
 	}
 }
