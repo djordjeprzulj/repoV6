@@ -2,6 +2,9 @@ package com.example.v5data.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -60,6 +63,7 @@ public class TOrder implements Serializable {
 		this.TCustomer = TCustomer;
 	}
 
+	@JsonIgnore
 	public List<TOrderItem> getTOrderItems() {
 		return this.TOrderItems;
 	}

@@ -17,4 +17,9 @@ public class TProductController {
 	public Iterable<TProduct> getAllProducts() {
 		return tProductRepository.findAll();
 	}
+	
+	@RequestMapping("/productSorted")
+	public Iterable<TProduct> getSortedProducts() {
+		return tProductRepository.findByOrderByNameAsc();	
+	}
 }

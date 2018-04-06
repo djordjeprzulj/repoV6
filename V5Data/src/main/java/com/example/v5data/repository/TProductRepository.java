@@ -6,4 +6,5 @@ import com.example.v5data.model.TProduct;
 
 public interface TProductRepository extends JpaRepository<TProduct, Integer>{
 
+	Iterable<TProduct> findByOrderByNameAsc();
 }

@@ -2,6 +2,9 @@ package com.example.v5data.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -55,6 +58,7 @@ public class TProduct implements Serializable {
 		this.price = price;
 	}
 
+	@JsonIgnore
 	public List<TOrderItem> getTOrderItems() {
 		return this.TOrderItems;
 	}
