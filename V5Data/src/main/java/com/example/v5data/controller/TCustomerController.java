@@ -17,4 +17,10 @@ public class TCustomerController {
 	public Iterable<TCustomer> getAllCustomers() {
 		return tCustomerRepository.findAll();
 	}
+	
+	@RequestMapping("/customerName")
+	public Iterable<TCustomer> getCustomerByName() {
+		return tCustomerRepository.findByFirstName("Novak");
+	}
+	
 }

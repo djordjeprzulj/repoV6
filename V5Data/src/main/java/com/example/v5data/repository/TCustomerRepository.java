@@ -6,4 +6,5 @@ import com.example.v5data.model.TCustomer;
 
 public interface TCustomerRepository extends JpaRepository<TCustomer, Integer>{
 
+	Iterable<TCustomer> findByFirstName(String firstName);
 }
