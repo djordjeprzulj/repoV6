@@ -1,6 +1,8 @@
 package com.example.v5data.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 
@@ -23,6 +25,9 @@ public class TOrderItem implements Serializable {
 	@Column(name="seq_num")
 	private int seqNum;
 
+	@Transient
+	private BigDecimal itemTotal;
+	
 	//bi-directional many-to-one association to TOrder
 	@ManyToOne
 	@JoinColumn(name="order_id")
@@ -74,6 +79,13 @@ public class TOrderItem implements Serializable {
 
 	public void setTProduct(TProduct TProduct) {
 		this.TProduct = TProduct;
+	}
+	
+	public BigDecimal getItemTotal() {
+		if (this.getTProduct() != null)
+			return new BigDecimal(this.getTProduct().getPrice().doubleValue()*this.quantity).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+		else
+			return new BigDecimal(0);
 	}
 
 }
