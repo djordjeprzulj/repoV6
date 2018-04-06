@@ -1,6 +1,8 @@
 package com.example.v5data.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +16,8 @@ public class TProductController {
 	private TProductRepository tProductRepository;
 	
 	@RequestMapping("/product")
-	public Iterable<TProduct> getAllProducts() {
-		return tProductRepository.findAll();
+	public Page<TProduct> getAllProducts(Pageable p) {
+		return tProductRepository.findAll(p);
 	}
 	
 	@RequestMapping("/productSorted")
