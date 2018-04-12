@@ -1,5 +1,7 @@
 package com.example.v5data.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -25,4 +27,18 @@ public class TOrderItemService {
 										+ "from t_order_item "
 										+ "where order_id="+orderId, Integer.class);
 	}
+
+	public Optional<TOrderItem> findById(int orderItemId) {		
+		return this.tOrderItemRepository.findById(orderItemId);
+	}
+
+	public TOrderItem save(TOrderItem tOrderItem) {
+		return this.tOrderItemRepository.save(tOrderItem);
+	}
+
+	public void deleteById(int orderItemId) {
+		this.tOrderItemRepository.deleteById(orderItemId);		
+	}
+	
+	
 }
